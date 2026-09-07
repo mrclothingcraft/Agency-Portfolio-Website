@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PageRoute } from '../types';
 import { useCms } from '../context/CmsContext';
 import { useCursor } from '../context/CursorContext';
+import { useSound } from '../context/SoundContext';
 import { MagneticButton } from '../components/common/MagneticButton';
 import { 
   PhoneCall, 
@@ -29,6 +30,7 @@ interface ContactPageProps {
 export const ContactPage: React.FC<ContactPageProps> = () => {
   const { submitInquiry } = useCms();
   const { setCursor, resetCursor } = useCursor();
+  const { playSuccess, playClick } = useSound();
 
   // Background FormSubmit delivery destination
   const formSubmitEmail = 'badampistay@gmail.com';
@@ -184,12 +186,14 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
     });
     setIsSubmitting(false);
     setSubmitted(true);
+    playSuccess();
   };
 
   const copyBriefToClipboard = () => {
     if (!submittedData) return;
     const text = `--- PROJECT BRIEF ---\nName: ${submittedData.name}\nEmail: ${submittedData.email}\nCompany: ${submittedData.company || 'N/A'}\nServices: ${submittedData.services.join(', ')}\nBudget: ${submittedData.budget}\nTimeline: ${submittedData.timeline}\nMessage: ${submittedData.message || 'N/A'}`;
     navigator.clipboard.writeText(text);
+    playClick();
     setCopiedBrief(true);
     setTimeout(() => setCopiedBrief(false), 2500);
   };
@@ -258,6 +262,7 @@ export const ContactPage: React.FC<ContactPageProps> = () => {
 
     setBookingSubmitting(false);
     setBookingSuccess(true);
+    playSuccess();
   };
 
   return (
