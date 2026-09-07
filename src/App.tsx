@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence } from 'motion/react';
 import { PageRoute } from './types';
 import { CmsProvider } from './context/CmsContext';
 import { CursorProvider } from './context/CursorContext';
@@ -7,6 +8,7 @@ import { useLenis } from './hooks/useLenis';
 import { CustomCursor } from './components/common/CustomCursor';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
+import { OpeningExperience } from './components/common/OpeningExperience';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -28,6 +30,15 @@ export default function App() {
 
   const [currentRoute, setCurrentRoute] = useState<PageRoute>('home');
   const [currentSlug, setCurrentSlug] = useState<string | undefined>(undefined);
+
+  // Full-screen 3D Opening / Loading Experience (Shown on first visit per session, with replay option)
+  const [showIntro, setShowIntro] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('aether_intro_viewed_v1') !== 'true';
+    } catch {
+      return true;
+    }
+  });
 
   // Sync with browser history state / URL hash for realistic multi-page feel & direct navigation
   useEffect(() => {
@@ -99,6 +110,16 @@ export default function App() {
     <CmsProvider>
       <CursorProvider>
         <SoundProvider>
+          {/* Full-Screen 3D Robot Opening / Loading Experience */}
+          <AnimatePresence mode="wait">
+            {showIntro && (
+              <OpeningExperience
+                key="aether-opening-experience"
+                onComplete={() => setShowIntro(false)}
+              />
+            )}
+          </AnimatePresence>
+
           {/* Custom cursor with morphing states, magnetic pull, and mobile auto-disable */}
           <CustomCursor />
 
@@ -107,7 +128,8 @@ export default function App() {
             <Header 
               currentRoute={currentRoute} 
               currentSlug={currentSlug} 
-              onNavigate={handleNavigate} 
+              onNavigate={handleNavigate}
+              onReplayIntro={() => setShowIntro(true)}
             />
 
             {/* Main Page Body */}
@@ -116,7 +138,10 @@ export default function App() {
             </main>
 
             {/* Footer */}
-            <Footer onNavigate={handleNavigate} />
+            <Footer 
+              onNavigate={handleNavigate} 
+              onReplayIntro={() => setShowIntro(true)}
+            />
           </div>
         </SoundProvider>
       </CursorProvider>

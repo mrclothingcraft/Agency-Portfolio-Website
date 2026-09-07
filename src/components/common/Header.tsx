@@ -10,16 +10,18 @@ import {
   ChevronDown, 
   ArrowRight,
   Volume2,
-  VolumeX
+  VolumeX,
+  Sparkles
 } from 'lucide-react';
 
 interface HeaderProps {
   currentRoute: PageRoute;
   currentSlug?: string;
   onNavigate: (route: PageRoute, slug?: string) => void;
+  onReplayIntro?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ currentRoute, currentSlug, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ currentRoute, currentSlug, onNavigate, onReplayIntro }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -154,7 +156,29 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, currentSlug, onNav
           </nav>
 
           {/* Right Action: Clean CTA Button & Sound Toggle */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5">
+            {/* Replay 3D Intro Button */}
+            {onReplayIntro && (
+              <button
+                id="header-replay-intro-btn"
+                onClick={() => {
+                  playClick();
+                  onReplayIntro();
+                }}
+                onMouseEnter={() => {
+                  setCursor('link');
+                  playHover();
+                }}
+                onMouseLeave={resetCursor}
+                className="h-9 px-3 rounded-full border border-[#1E2945] bg-[#101626]/60 hover:bg-[#101626] hover:border-[#3E7BFA]/50 text-[#9AA3C2] hover:text-[#17B4E0] transition-all flex items-center gap-1.5 text-xs font-medium cursor-pointer"
+                title="Replay 3D Intro Experience"
+                aria-label="Replay 3D Opening Experience"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-[#17B4E0]" />
+                <span className="hidden xl:inline text-[11px]">3D Intro</span>
+              </button>
+            )}
+
             {/* Ultra-Premium Micro-Audio Toggle Button */}
             <button
               id="sound-fx-toggle-btn"
