@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { useCursor } from '../../context/CursorContext';
+import { useSound } from '../../context/SoundContext';
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -26,6 +27,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const { setCursor, resetCursor } = useCursor();
+  const { playHover } = useSound();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled || !buttonRef.current) return;
@@ -41,6 +43,7 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
 
   const handleMouseEnter = () => {
     if (disabled) return;
+    playHover();
     setCursor('button', cursorLabel);
   };
 

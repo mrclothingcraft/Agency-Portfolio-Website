@@ -208,19 +208,30 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, currentSlug, onNav
           {/* Mobile Actions (Sound + Menu) */}
           <div className="flex md:hidden items-center gap-2">
             <button
+              id="mobile-sound-toggle-btn"
               onClick={() => toggleSound()}
-              className="p-2 rounded-full bg-[#101626] border border-[#1E2945] text-[#9AA3C2] hover:text-[#F3F5FA]"
-              aria-label="Toggle sound"
+              className={`p-2 rounded-full border transition-all duration-200 cursor-pointer ${
+                soundEnabled
+                  ? 'bg-[#101626] border-[#3E7BFA]/50 text-[#3E7BFA] shadow-[0_0_12px_rgba(62,123,250,0.25)]'
+                  : 'bg-[#101626]/70 border-[#1E2945] text-[#9AA3C2]'
+              }`}
+              aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}
+              title={soundEnabled ? 'SFX Enabled (Tap to mute)' : 'SFX Muted (Tap to enable)'}
             >
-              {soundEnabled ? <Volume2 className="h-4 w-4 text-[#3E7BFA]" /> : <VolumeX className="h-4 w-4" />}
+              {soundEnabled ? (
+                <Volume2 className="h-4 w-4 text-[#3E7BFA]" />
+              ) : (
+                <VolumeX className="h-4 w-4 text-[#9AA3C2]" />
+              )}
             </button>
 
             <button
+              id="mobile-menu-toggle-btn"
               onClick={() => {
                 playClick();
                 setMobileMenuOpen(!mobileMenuOpen);
               }}
-              className="p-2 rounded-full bg-[#101626] border border-[#1E2945] text-[#9AA3C2] hover:text-[#F3F5FA]"
+              className="p-2 rounded-full bg-[#101626] border border-[#1E2945] text-[#9AA3C2] hover:text-[#F3F5FA] cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
