@@ -1,0 +1,8 @@
+{
+  "name": "Remix Aether Digital Studio",
+  "description": "Multi-page dark-theme digital agency specializing in Web & Mobile App Development, E-commerce Complete Solutions, 3D WebGL visuals, and unified CMS architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
