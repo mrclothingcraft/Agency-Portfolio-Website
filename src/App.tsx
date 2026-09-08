@@ -8,6 +8,7 @@ import { useLenis } from './hooks/useLenis';
 import { CustomCursor } from './components/common/CustomCursor';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
+import { FloatingRobotAssistant } from './components/chatbot/FloatingRobotAssistant';
 import { OpeningExperience } from './components/common/OpeningExperience';
 
 // Pages
@@ -141,6 +142,11 @@ export default function App() {
             <Footer 
               onNavigate={handleNavigate} 
               onReplayIntro={() => setShowIntro(true)}
+            />
+
+            {/* Persistent 3D Robot Assistant with Website Data Knowledge Base */}
+            <FloatingRobotAssistant 
+              onNavigate={handleNavigate}
             />
           </div>
         </SoundProvider>

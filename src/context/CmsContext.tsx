@@ -89,7 +89,7 @@ interface CmsContextType {
 
 const CmsContext = createContext<CmsContextType | undefined>(undefined);
 
-const STORAGE_KEY_PREFIX = 'aether_cms_v8_';
+const STORAGE_KEY_PREFIX = 'aether_cms_v11_';
 
 const REMOVED_PROJECT_IDENTIFIERS = new Set([
   'proj-1',

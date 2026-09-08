@@ -42,11 +42,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {tagline}
             </p>
 
-            <div className="pt-2 text-xs text-[#9AA3C2] space-y-1">
+            <div className="pt-2 text-xs text-[#9AA3C2] space-y-1.5">
               <div>{location}</div>
               <div>
                 <a href={`mailto:${email}`} className="text-[#3E7BFA] hover:underline">
                   {email}
+                </a>
+              </div>
+              <div>
+                <a 
+                  href="https://wa.me/923101072246?text=Hi%2C%20I%20would%20like%20to%20discuss%20a%20new%20project." 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#25D366] hover:text-white transition-colors flex items-center gap-1.5 font-medium"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#25D366] animate-pulse" />
+                  <span>WhatsApp: +92 310 1072246</span>
                 </a>
               </div>
             </div>
@@ -143,12 +154,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a 
-                  href="https://wa.me/18005550199?text=Hi%20Aether%20Team%2C%20I%20would%20like%20to%20discuss%20a%20new%20project." 
+                  href="https://wa.me/923101072246?text=Hi%2C%20I%20would%20like%20to%20discuss%20a%20new%20project." 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-[#F3F5FA] transition-colors"
+                  className="hover:text-[#25D366] text-[#9AA3C2] transition-colors flex items-center gap-1.5"
                 >
-                  WhatsApp VIP Direct
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#25D366]" />
+                  <span>Chat on WhatsApp (+92 310 1072246)</span>
                 </a>
               </li>
               <li>

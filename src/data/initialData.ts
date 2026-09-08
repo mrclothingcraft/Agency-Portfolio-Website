@@ -32,8 +32,8 @@ export const siteConfig: SiteConfig = {
     phone: '+1 (800) 555-0199',
     address: '555 Mission Street, Suite 2400, Financial District',
     cityState: 'San Francisco, CA 94105',
-    whatsappNumber: '+18005550199',
-    whatsappUrl: 'https://wa.me/18005550199?text=Hi%20Aether%20Team%2C%20I%20would%20like%20to%20discuss%20a%20new%20project.',
+    whatsappNumber: '03101072246',
+    whatsappUrl: 'https://wa.me/923101072246?text=Hi%2C%20I%20would%20like%20to%20discuss%20a%20new%20project.',
     googleMapsEmbedUrl: 'https://maps.google.com/maps?q=555+Mission+Street+San+Francisco+CA&t=&z=14&ie=UTF8&iwloc=&output=embed',
     workingHours: 'Mon - Fri: 8:00 AM - 6:00 PM PST',
     formSubmitEmail: 'badampistay@gmail.com'

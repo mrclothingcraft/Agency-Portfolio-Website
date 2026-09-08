@@ -339,7 +339,7 @@ export const Header: React.FC<HeaderProps> = ({ currentRoute, currentSlug, onNav
                 onNavigate('contact');
                 setMobileMenuOpen(false);
               }}
-              className="w-full py-3 rounded-full bg-gradient-to-r from-[#3E7BFA] to-[#1230C4] text-[#F3F5FA] text-xs font-semibold tracking-wide text-center"
+              className="w-full py-3 rounded-full bg-gradient-to-r from-[#3E7BFA] to-[#1230C4] text-[#F3F5FA] text-xs font-semibold tracking-wide text-center cursor-pointer"
             >
               Start a Project
             </button>
