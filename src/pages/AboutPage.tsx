@@ -19,10 +19,21 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
-  const { team } = useCms();
+  const { team, aboutPageData, siteConfig } = useCms();
   const { setCursor, resetCursor } = useCursor();
 
-  const values = [
+  const iconMap: Record<string, React.ElementType> = {
+    Award,
+    Cpu,
+    Flame,
+    ShieldCheck
+  };
+
+  const values = aboutPageData?.values?.map(v => ({
+    title: v.title,
+    desc: v.desc,
+    icon: iconMap[v.iconName] || Award
+  })) || [
     {
       title: 'Craft Over Volume',
       desc: 'We purposefully cap active partner engagements to ensure undivided focus and uncompromising quality.',
@@ -45,41 +56,40 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
     }
   ];
 
+  const stats = aboutPageData?.stats || [
+    { value: '10+', label: 'Years of Practice' },
+    { value: '$45M+', label: 'Client Growth Driven' },
+    { value: '50+', label: 'Flagship Launches' },
+    { value: '99%', label: 'Client Satisfaction' }
+  ];
+
   return (
     <div id="about-page" className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-24">
       {/* 1. HERO */}
       <div className="max-w-3xl space-y-6">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101626] border border-[#1E2945] text-xs font-medium text-[#3E7BFA]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#17B4E0]" />
-          <span>About Aether Studio</span>
+          <span>{aboutPageData?.heroBadge || `About ${siteConfig?.name || 'Aether Studio'}`}</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-[#F3F5FA] tracking-tight leading-tight">
-          Where Design Craft Meets Engineering Rigor.
+          {aboutPageData?.title || 'Where Design Craft Meets Engineering Rigor.'}
         </h1>
         <p className="text-base sm:text-lg text-[#9AA3C2] leading-relaxed">
-          Founded in 2015, Aether was established to bridge the gap between creative visual artistry and robust software engineering. We collaborate directly with founders and product teams to build digital flagships that endure.
+          {aboutPageData?.description || 'Founded in 2015, Aether was established to bridge the gap between creative visual artistry and robust software engineering. We collaborate directly with founders and product teams to build digital flagships that endure.'}
         </p>
       </div>
 
       {/* 2. STATS BAR */}
       <div className="p-8 rounded-2xl bg-[#101626] border border-[#1E2945]/70">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#3E7BFA]">10+</div>
-            <div className="text-xs text-[#9AA3C2]">Years of Practice</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#17B4E0]">$45M+</div>
-            <div className="text-xs text-[#9AA3C2]">Client Growth Driven</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#3E7BFA]">50+</div>
-            <div className="text-xs text-[#9AA3C2]">Flagship Launches</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-extrabold text-[#17B4E0]">99%</div>
-            <div className="text-xs text-[#9AA3C2]">Client Satisfaction</div>
-          </div>
+          {stats.map((s, idx) => (
+            <div key={idx} className="space-y-1">
+              <div className={`text-3xl sm:text-4xl font-extrabold ${idx % 2 === 0 ? 'text-[#3E7BFA]' : 'text-[#17B4E0]'}`}>
+                {s.value}
+              </div>
+              <div className="text-xs text-[#9AA3C2]">{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 

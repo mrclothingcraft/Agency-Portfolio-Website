@@ -14,7 +14,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
   const { setCursor, resetCursor } = useCursor();
   const [selectedTag, setSelectedTag] = useState<string>('All');
 
-  const allTags = ['All', 'Web Development', 'Shopify Development', 'Digital Marketing', 'WebGL'];
+  const allTags = ['All', ...Array.from(new Set(blogPosts.map(p => p.category)))];
 
   const filteredPosts = blogPosts.filter(post => {
     if (selectedTag === 'All') return true;
@@ -70,6 +70,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
                 <img
                   src={post.coverImage}
                   alt={post.title}
+                  referrerPolicy="no-referrer"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
@@ -107,6 +108,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
                 <img
                   src={post.author.avatar}
                   alt={post.author.name}
+                  referrerPolicy="no-referrer"
                   className="h-6 w-6 rounded-full object-cover border border-[#1E2945]"
                 />
                 <span className="text-xs text-[#9AA3C2]">{post.author.name}</span>

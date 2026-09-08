@@ -28,12 +28,12 @@ interface ContactPageProps {
 }
 
 export const ContactPage: React.FC<ContactPageProps> = () => {
-  const { submitInquiry } = useCms();
+  const { submitInquiry, contactPageData, siteConfig } = useCms();
   const { setCursor, resetCursor } = useCursor();
   const { playSuccess, playClick } = useSound();
 
-  // Background FormSubmit delivery destination
-  const formSubmitEmail = 'badampistay@gmail.com';
+  // Background FormSubmit delivery destination from centralized config
+  const formSubmitEmail = contactPageData?.formSubmitEmail || 'badampistay@gmail.com';
 
   // Multi-discipline support & custom budget support
   const [selectedServices, setSelectedServices] = useState<string[]>(['Web Development']);

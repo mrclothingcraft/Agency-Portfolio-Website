@@ -1,4 +1,390 @@
-import { ServiceItem, ProjectItem, TestimonialItem, BlogPostItem, TeamMemberItem } from '../types';
+import { 
+  ServiceItem, 
+  ProjectItem, 
+  TestimonialItem, 
+  BlogPostItem, 
+  TeamMemberItem,
+  SiteConfig,
+  HeroData,
+  ProcessStep,
+  FAQItem,
+  AboutPageData,
+  ContactPageData,
+  PricingPlan,
+  FooterData,
+  PageRoute
+} from '../types';
+
+/* ==========================================================================
+   CENTRALIZED WEBSITE DATA & CONFIGURATION
+   Everything used across all pages and sections lives in this file.
+   Editing content here automatically updates all pages, components, and SEO.
+   ========================================================================== */
+
+export const siteConfig: SiteConfig = {
+  name: 'Aether Digital Studio',
+  shortName: 'Aether',
+  tagline: 'Architecting Digital Experiences That Command Prestige & Scale',
+  description: 'We design and engineer bespoke digital experiences, high-performance web applications, cloud POS systems, iOS & Android mobile apps, and interactive 3D environments for forward-thinking brands.',
+  foundedYear: '2015',
+  contact: {
+    email: 'partners@aetherstudio.agency',
+    phone: '+1 (800) 555-0199',
+    address: '555 Mission Street, Suite 2400, Financial District',
+    cityState: 'San Francisco, CA 94105',
+    whatsappNumber: '+18005550199',
+    whatsappUrl: 'https://wa.me/18005550199?text=Hi%20Aether%20Team%2C%20I%20would%20like%20to%20discuss%20a%20new%20project.',
+    googleMapsEmbedUrl: 'https://maps.google.com/maps?q=555+Mission+Street+San+Francisco+CA&t=&z=14&ie=UTF8&iwloc=&output=embed',
+    workingHours: 'Mon - Fri: 8:00 AM - 6:00 PM PST',
+    formSubmitEmail: 'badampistay@gmail.com'
+  },
+  socials: [
+    { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'linkedin' },
+    { name: 'Twitter / X', url: 'https://twitter.com', icon: 'twitter' },
+    { name: 'GitHub', url: 'https://github.com', icon: 'github' },
+    { name: 'Instagram', url: 'https://instagram.com', icon: 'instagram' },
+    { name: 'Dribbble', url: 'https://dribbble.com', icon: 'dribbble' }
+  ],
+  seo: {
+    title: 'Aether Digital Studio | Elite Web, Mobile, Shopify & POS Engineering',
+    description: 'Award-winning digital studio engineering high-performance websites, custom software, iOS/Android apps, headless Shopify stores, and enterprise POS systems.',
+    keywords: [
+      'Web Development',
+      'Mobile App Development',
+      'Shopify Development',
+      'POS Systems',
+      'Custom Software',
+      'Next.js Commerce',
+      'React 19',
+      'Three.js 3D WebGL',
+      'Cloud POS Retail OS',
+      'Digital Agency'
+    ]
+  }
+};
+
+export const heroData: HeroData = {
+  badge: 'Digital Design & Engineering Studio',
+  headingPrefix: 'Architecting Digital Experiences That Command',
+  headingHighlight: 'Prestige',
+  headingSuffix: '& Scale.',
+  subheading: 'We merge interactive 3D WebGL, high-velocity engineering, and brand strategy to transform ambitious brands into category leaders.',
+  primaryCta: { label: 'Explore Our Work', route: 'work' },
+  secondaryCta: { label: 'Start a Project', route: 'contact' },
+  trustBadges: [
+    { value: '10+', label: 'Years Active' },
+    { value: '50+', label: 'Projects Completed' },
+    { value: '120+', label: 'Clients Worldwide' },
+    { value: '99%', label: 'Client Retention' }
+  ],
+  clientLogos: [
+    'CHRONOS SWISS',
+    'SYNAPSE AI',
+    'LUMINA STUDIO',
+    'KINETIC MOTORS',
+    'SOLIS APPAREL',
+    'VELOX GLOBAL'
+  ]
+};
+
+export const homePageData = {
+  agencyIntro: {
+    badge: 'Why Aether',
+    headline: 'Engineering High-Velocity Digital Architecture',
+    subheadline: 'We reject generic templates and bloated frameworks. Every line of code, 3D interaction, and design token is engineered for exceptional conversion, extreme speed, and long-term durability.'
+  },
+  processSteps: [
+    {
+      step: '01',
+      title: 'Discovery & Strategy',
+      desc: 'We analyze your market position, business objectives, and audience to establish a definitive technical and visual roadmap.',
+      iconName: 'Compass'
+    },
+    {
+      step: '02',
+      title: 'Design & Motion',
+      desc: 'Crafting bespoke 3D assets, design systems, and fluid interactive prototypes tailored to your unique brand identity.',
+      iconName: 'PenTool'
+    },
+    {
+      step: '03',
+      title: 'Precision Engineering',
+      desc: 'Building responsive, ultra-fast web architectures with clean TypeScript, modern frameworks, and headless CMS.',
+      iconName: 'Code2'
+    },
+    {
+      step: '04',
+      title: 'Launch & Growth',
+      desc: 'Rigorous cross-browser QA, Core Web Vitals optimization, and seamless deployment with continuous support and analytics.',
+      iconName: 'Rocket'
+    }
+  ],
+  agencyPillars: [
+    {
+      title: 'Speed by Design',
+      desc: 'Sub-second LCP and 99+ Lighthouse scores out of the box. Fast websites convert 3x higher.',
+      iconName: 'Zap'
+    },
+    {
+      title: 'Dedicated Squads',
+      desc: 'Work directly with senior product designers and platform engineers — zero account executive middlemen.',
+      iconName: 'Users'
+    },
+    {
+      title: 'Zero Vendor Lock-in',
+      desc: 'You receive 100% intellectual property ownership, source repositories, and comprehensive documentation.',
+      iconName: 'ShieldCheck'
+    },
+    {
+      title: 'Enterprise Reliability',
+      desc: 'SOC2-ready cloud patterns, 99.99% uptime guarantees, and automated continuous deployment pipelines.',
+      iconName: 'CheckCircle2'
+    }
+  ],
+  faq: [
+    {
+      q: 'How long does a typical project take from kickoff to launch?',
+      a: 'Marketing sites and flagship corporate experiences typically launch in 3 to 5 weeks. Complex web applications, full headless Shopify builds, and custom POS systems generally take 6 to 10 weeks.'
+    },
+    {
+      q: 'What makes Aether different from traditional digital agencies?',
+      a: 'We combine high-stakes interactive 3D WebGL artistry with rigorous software engineering. You work directly with the senior engineers and designers building your product, eliminating agency bloat.'
+    },
+    {
+      q: 'Do you offer post-launch support and continuous engineering retainers?',
+      a: 'Yes. All builds include a 30-day comprehensive warranty, and we provide dedicated monthly engineering retainers for continuous feature releases, conversion rate optimization, and infrastructure monitoring.'
+    },
+    {
+      q: 'Who owns the intellectual property and code repositories?',
+      a: 'You do. 100% of code, design files (Figma, 3D assets), and production deployments are transferred directly to your organization upon final sign-off.'
+    },
+    {
+      q: 'Can you integrate our existing backend, ERP, or Shopify catalog?',
+      a: 'Absolutely. We specialize in API-first integrations including Shopify Storefront GraphQL, custom ERP/WMS systems, Stripe, Algolia, and proprietary database architectures.'
+    }
+  ],
+  ctaBanner: {
+    badge: 'Initiate Collaboration',
+    headline: 'Ready to Architect Your Next Category Leader?',
+    subheadline: "Let's schedule a 30-minute discovery call to evaluate your technical requirements, design goals, and timeline.",
+    primaryCtaLabel: 'Book Architecture Review',
+    primaryCtaRoute: 'contact' as PageRoute,
+    secondaryCtaLabel: 'View Recent Case Studies',
+    secondaryCtaRoute: 'work' as PageRoute
+  }
+};
+
+export const aboutPageData: AboutPageData = {
+  badge: 'About Aether Studio',
+  heading: 'Where Design Craft Meets Engineering Rigor.',
+  description: 'Founded in 2015, Aether was established to bridge the gap between creative visual artistry and robust software engineering. We collaborate directly with founders and enterprise leaders to build digital flagships that endure.',
+  storyP1: 'We believe the web is the most expressive medium in human history. Yet too many digital products settle for identical off-the-shelf templates and sluggish, fragile code. We exist to challenge that compromise.',
+  storyP2: 'By pairing tactile 3D WebGL motion with uncompromising performance budgets, our team crafts digital environments that evoke prestige, drive commercial conversion, and scale effortlessly to millions of daily users.',
+  stats: [
+    { value: '10+', label: 'Years of Practice' },
+    { value: '50+', label: 'Flagship Deliveries' },
+    { value: '120+', label: 'Global Clients' },
+    { value: '99.4%', label: 'On-Time Launch SLA' }
+  ],
+  values: [
+    {
+      title: 'Craft Over Volume',
+      desc: 'We purposefully cap active partner engagements to ensure undivided focus, senior attention, and uncompromising quality.',
+      iconName: 'Award'
+    },
+    {
+      title: 'Precision Performance',
+      desc: 'Every millisecond matters. We write clean, semantic code that delivers sub-second page loads across every device.',
+      iconName: 'Cpu'
+    },
+    {
+      title: 'Commercial Impact',
+      desc: 'Great design serves business outcomes. Every visual and architectural decision is rooted in conversion, retention, and growth.',
+      iconName: 'Flame'
+    },
+    {
+      title: 'Total Transparency',
+      desc: 'No black-box markups or hidden fees. Clients retain 100% intellectual property, clean Git history, and full repository access.',
+      iconName: 'ShieldCheck'
+    }
+  ]
+};
+
+export const contactPageData: ContactPageData = {
+  badge: 'Initiate Collaboration',
+  heading: "Let's Build Something Exceptional.",
+  subheading: 'Whether you are launching a new flagship product, migrating to headless commerce, or engineering a custom POS system, our engineering squad is ready.',
+  offices: [
+    {
+      name: 'San Francisco Flagship',
+      address: '555 Mission Street, Suite 2400',
+      phone: '+1 (800) 555-0199',
+      email: 'partners@aetherstudio.agency'
+    },
+    {
+      name: 'London Studio',
+      address: '100 Bishopsgate, 19th Floor',
+      phone: '+44 20 7946 0920',
+      email: 'london@aetherstudio.agency'
+    }
+  ],
+  servicesList: [
+    'Web Development',
+    'Mobile App Development',
+    'Shopify Development',
+    'POS Systems',
+    'Custom Software',
+    'E-commerce Complete Solution',
+    'Graphic Design & Branding',
+    'Video Editing & Motion'
+  ],
+  budgetRanges: [
+    '< $10,000',
+    '$10,000 - $25,000',
+    '$25,000 - $50,000',
+    '$50,000 - $100,000',
+    '$100,000+'
+  ],
+  timelineOptions: [
+    'Immediate (Next 2 Weeks)',
+    '1-2 Months',
+    '2-3 Months',
+    'Flexible / Long-term Retainer'
+  ]
+};
+
+export const pricingPageData = {
+  badge: 'Transparent Investment',
+  heading: 'Clear, Predictable Engineering Tiers',
+  subheading: 'No hidden fees or unexpected billable hours. Transparent sprint and platform packages tailored to your scale.',
+  plans: [
+    {
+      id: 'tier-sprint',
+      name: 'Sprint Build',
+      description: 'Ideal for high-converting marketing flagships, product launch sites, and corporate brand platforms.',
+      priceMonthly: '$6,500',
+      priceAnnual: '$5,500',
+      period: 'One-time build',
+      features: [
+        'Custom 5-8 page interactive experience',
+        'Next.js 19 / React / Tailwind CSS stack',
+        'Headless CMS integration & schema setup',
+        'Core Web Vitals 95+ performance guarantee',
+        '2-3 week sprint delivery turnaround',
+        '30-day post-launch warranty & SLA'
+      ],
+      ctaLabel: 'Select Sprint Build',
+      ctaRoute: 'contact' as PageRoute
+    },
+    {
+      id: 'tier-flagship',
+      name: 'Flagship Platform',
+      description: 'Our most popular tier. Complete full-stack web applications, headless Shopify Plus, or iOS/Android apps.',
+      priceMonthly: '$14,500',
+      priceAnnual: '$12,500',
+      period: 'One-time build',
+      popular: true,
+      highlight: 'Most Popular for Ambitious Brands',
+      features: [
+        'Full custom web application or 15+ page platform',
+        'Interactive 3D WebGL / Three.js motion graphics',
+        'Custom backend API, database & authentication',
+        'Headless Shopify Plus or mobile app architecture',
+        'Advanced conversion tracking & analytics setup',
+        '60-day post-launch warranty & priority support'
+      ],
+      ctaLabel: 'Select Flagship Platform',
+      ctaRoute: 'contact' as PageRoute
+    },
+    {
+      id: 'tier-enterprise',
+      name: 'Enterprise Retainer',
+      description: 'Dedicated senior engineering squad for continuous feature releases, A/B experiments, and performance monitoring.',
+      priceMonthly: '$5,800',
+      priceAnnual: '$4,900',
+      period: '/month',
+      features: [
+        'Dedicated senior developer & UI designer team',
+        'Bi-weekly agile sprint planning & releases',
+        '24/7 uptime & sub-second SLA monitoring',
+        'Continuous conversion rate optimization',
+        'Direct Slack / WhatsApp VIP channel access',
+        'Priority 2-hour response SLA'
+      ],
+      ctaLabel: 'Partner on Retainer',
+      ctaRoute: 'contact' as PageRoute
+    }
+  ],
+  faq: [
+    {
+      q: 'Do you accept milestone-based payment schedules?',
+      a: 'Yes. Fixed-price builds typically follow a 50% deposit / 25% midpoint approval / 25% launch milestone breakdown.'
+    },
+    {
+      q: 'Can we customize a package to match our exact scope?',
+      a: 'Certainly! Contact our engineering team for a customized itemized estimate matching your specific technical specifications.'
+    }
+  ]
+};
+
+export const footerData: FooterData = {
+  tagline: 'Architecting Digital Experiences That Command Prestige & Scale.',
+  description: 'We design and engineer bespoke digital experiences, high-performance web applications, cloud POS systems, and interactive 3D environments for forward-thinking brands.',
+  newsletterHeading: 'Studio Dispatches',
+  newsletterSubtext: 'A curated monthly essay on 3D web performance, headless architecture, and design tokens.',
+  copyright: `© ${new Date().getFullYear()} Aether Digital Studio LLC. All rights reserved.`
+};
+
+export const navigationData = {
+  mainNav: [
+    { label: 'Services', route: 'services' as PageRoute, hasDropdown: true },
+    { label: 'Work', route: 'work' as PageRoute },
+    { label: 'About', route: 'about' as PageRoute },
+    { label: 'Pricing', route: 'pricing' as PageRoute },
+    { label: 'Blog', route: 'blog' as PageRoute },
+    { label: 'Contact', route: 'contact' as PageRoute }
+  ],
+  footerLinks: {
+    explore: [
+      { label: 'Home', route: 'home' as PageRoute },
+      { label: 'Featured Work', route: 'work' as PageRoute },
+      { label: 'Services Hub', route: 'services' as PageRoute },
+      { label: 'About Studio', route: 'about' as PageRoute },
+      { label: 'Pricing Tiers', route: 'pricing' as PageRoute },
+      { label: 'Insights & Blog', route: 'blog' as PageRoute }
+    ],
+    services: [
+      { label: 'Web Development', route: 'service-detail' as PageRoute, slug: 'web-development' },
+      { label: 'Mobile Apps', route: 'service-detail' as PageRoute, slug: 'mobile-app-development' },
+      { label: 'Shopify Plus', route: 'service-detail' as PageRoute, slug: 'shopify-development' },
+      { label: 'POS Systems', route: 'service-detail' as PageRoute, slug: 'pos-systems' },
+      { label: 'Custom Software', route: 'service-detail' as PageRoute, slug: 'custom-software-development' },
+      { label: 'E-commerce Complete', route: 'service-detail' as PageRoute, slug: 'ecommerce-complete-solution' }
+    ],
+    legal: [
+      { label: 'Privacy Policy', route: 'home' as PageRoute },
+      { label: 'Terms of Service', route: 'home' as PageRoute },
+      { label: 'Security Architecture', route: 'home' as PageRoute },
+      { label: 'Sitemap Index', route: 'sitemap' as PageRoute }
+    ]
+  }
+};
+
+export const openingExperienceData = {
+  welcomeMessage1: 'Welcome to Our Digital World.',
+  welcomeMessage2: 'We Build Digital Experiences.',
+  loadingLabel: 'INITIALIZING EXPERIENCE...',
+  durationMs: 3000,
+  services: [
+    { id: 'mobile-apps', name: 'Mobile Apps', iconName: 'Smartphone' },
+    { id: 'websites', name: 'Websites', iconName: 'Globe' },
+    { id: 'ecommerce', name: 'E-commerce', iconName: 'ShoppingBag' },
+    { id: 'shopify', name: 'Shopify', iconName: 'ShoppingCart' },
+    { id: 'web-apps', name: 'Web Applications', iconName: 'LayoutGrid' },
+    { id: 'custom-software', name: 'Custom Software', iconName: 'Cpu' },
+    { id: 'pos-systems', name: 'POS Systems', iconName: 'CreditCard' }
+  ]
+};
 
 export const initialServices: ServiceItem[] = [
   {
@@ -1015,583 +1401,931 @@ export const initialTestimonials: TestimonialItem[] = [
 ];
 
 export const initialBlogPosts: BlogPostItem[] = [
-  {
-    id: 'blog-1',
-    slug: 'building-retail-pos-system-mr-clothing-craft',
-    title: 'How We Built a Complete Retail POS System for MR Clothing Craft',
-    excerpt:
-      'A behind-the-scenes look at how we built a complete retail operating system covering POS billing, inventory, customers, staff, Shopify synchronization, reporting and AI-powered operations.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Product & Engineering Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    },
-    date: 'September 7, 2026',
-    readTime: '8 min read',
-    category: 'Custom Software',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    tags: [
-      'Retail POS',
-      'Custom Software',
-      'Shopify',
-      'Inventory',
-      'AI',
-      'Business Management',
-    ],
-    content: `
-Modern retail businesses need more than a simple billing counter. They need a connected system that brings sales, inventory, customers, staff, cash management and online commerce together.
-
-For MR Clothing Craft, we developed a complete Retail Operating System designed around the real requirements of a modern fashion retailer.
-
-The platform includes 29 screens, 40+ features, 159 API endpoints and 28 database models.
-
-### What the system handles
-
-The POS manages the complete in-store sales process, including product selection, barcode-based billing, cart management, payments and order processing.
-
-Inventory management was designed specifically for fashion retail. Products can be managed by size, color and quantity, allowing the team to know exactly what is available.
-
-The platform also includes customer management, staff and HR functionality, cash management, expenses and business reporting.
-
-### Connecting Shopify with physical retail
-
-One of the most important parts of the system is the connection between the physical store and the Shopify e-commerce operation.
-
-Instead of managing online and offline inventory separately, the system is designed to keep business data synchronized so that stock changes from one channel can be reflected across the connected ecosystem.
-
-### AI-powered operations
-
-We also introduced an AI assistant to make everyday operations easier.
-
-Instead of navigating through multiple screens for simple questions, staff can interact with the system using natural-language requests for information such as inventory and product availability.
-
-### Built for real business operations
-
-The goal was not to create another generic POS.
-
-The system was built around actual retail workflows, including size and color inventory, customer history, staff management, cash operations, reporting and online/offline synchronization.
-
-This project demonstrates how custom software can turn a traditional retail operation into a connected digital business.
-
-### Explore the project
-
-You can explore the complete Retail POS project, its screens, architecture and capabilities through our project portfolio.
-`,
-  },
 
   {
-    id: 'blog-2',
-    slug: 'mr-clothing-craft-shopify-ecommerce-development',
-    title: 'Building a Modern Shopify E-commerce Store for MR Clothing Craft',
+
+    id: 'blog-mr-clothing-craft-pos',
+
+    slug: 'building-mr-clothing-craft-retail-pos-system',
+
+    title: 'Building a Custom Retail POS System for MR Clothing Craft',
+
     excerpt:
-      'How we created a mobile-first Shopify shopping experience for a modern men’s fashion brand.',
+
+      'How we built a custom retail POS and business management system to manage sales, inventory, customers, staff, expenses, reports and Shopify operations from one platform.',
+
     author: {
-      name: 'Our Development Team',
-      role: 'E-commerce Development Team',
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
       avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
+
+        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true'
+
     },
-    date: 'September 5, 2026',
+
+    date: 'September 8, 2026',
+
     readTime: '6 min read',
-    category: 'Shopify Development',
+
+    category: 'POS Systems',
+
     coverImage:
+
       'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
+
     tags: [
-      'Shopify',
-      'E-commerce',
-      'MR Clothing Craft',
-      'Fashion',
-      'Online Store',
-    ],
-    content: `
-A fashion e-commerce website needs to do more than display products. It needs to make discovering products, selecting variants and placing an order simple on every device.
 
-For MR Clothing Craft, we developed a Shopify-based e-commerce experience focused on modern men's fashion and a smooth mobile-first customer journey.
+      'POS Systems',
 
-### Product discovery
-
-The store is organized around core fashion categories including shirts, polos, T-shirts, jeans, pants and accessories.
-
-The objective is to make it easy for customers to move from browsing to product selection without unnecessary complexity.
-
-### Size and color selection
-
-Fashion e-commerce requires clear product variants.
-
-The store supports product options such as sizes and colors so customers can select the right variant before adding an item to their cart.
-
-### Mobile-first shopping
-
-A large percentage of online customers browse from mobile devices.
-
-The experience therefore focuses on responsive layouts, readable product information, clear calls to action and simple navigation across smaller screens.
-
-### Connecting e-commerce with retail
-
-The Shopify store is also part of a larger business ecosystem.
-
-The custom MR Clothing Craft POS system was developed with Shopify integration in mind, allowing the physical retail operation and online store to work together instead of operating as isolated systems.
-
-### The result
-
-The project combines Shopify's e-commerce capabilities with a custom retail technology ecosystem designed around the actual needs of the brand.
-
-Visit the live MR Clothing Craft store to explore the implementation.
-`,
-  },
-
-  {
-    id: 'blog-3',
-    slug: 'fixtman-mobile-app-service-booking-platform',
-    title: 'Building FixTman: A Mobile App and Service Booking Platform',
-    excerpt:
-      'A look at the development of FixTman across mobile and web, combining service discovery, location-based booking and customer workflows.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Mobile & Web Development Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true',
-    },
-    date: 'September 3, 2026',
-    readTime: '6 min read',
-    category: 'Mobile App Development',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true',
-    tags: [
-      'FixTman',
-      'Mobile App',
-      'React Native',
-      'Service Booking',
-      'Web Development',
-    ],
-    content: `
-Service businesses need digital experiences that make booking simple from the first interaction.
-
-FixTman is a real-world project combining mobile applications with a web-based service booking experience.
-
-### From service discovery to booking
-
-The platform allows customers to select a service and continue through a structured booking process.
-
-The booking experience can use location information such as ZIP code to determine the appropriate service flow.
-
-### Mobile application
-
-FixTman is available as a mobile application, giving customers another way to interact with the service.
-
-Building a mobile application alongside a web booking platform requires consistency in user experience, business logic and data handling.
-
-### Why the workflow matters
-
-A service booking platform is more than a collection of pages.
-
-The customer needs to understand what service they are booking, provide the required information and move through the process without unnecessary friction.
-
-### Real project
-
-FixTman demonstrates our experience in building connected digital products across web and mobile.
-
-You can explore the live booking experience and the published mobile applications through the project links.
-`,
-  },
-
-  {
-    id: 'blog-4',
-    slug: 'gayemandi-mobile-app-development',
-    title: 'GayeMandi: Building a Production Mobile Application',
-    excerpt:
-      'Exploring the development approach behind the GayeMandi mobile experience across Android and iOS.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Mobile Development Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/GayeMandi.png?raw=true',
-    },
-    date: 'August 30, 2026',
-    readTime: '5 min read',
-    category: 'Mobile App Development',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/GayeMandi.png?raw=true',
-    tags: [
-      'GayeMandi',
-      'Mobile Development',
-      'Android',
-      'iOS',
-      'App Development',
-    ],
-    content: `
-Building a production mobile application requires much more than creating a set of screens.
-
-GayeMandi is one of the mobile application projects in our portfolio, developed for real users and published across Android and iOS.
-
-### Designing for mobile users
-
-Mobile users expect applications to be fast, intuitive and easy to navigate.
-
-Our approach focuses on clear navigation, responsive interactions and interfaces that keep important actions accessible.
-
-### Android and iOS
-
-Supporting multiple mobile platforms requires careful consideration of different screen sizes, operating-system behaviors and platform requirements.
-
-The GayeMandi project demonstrates our experience delivering mobile applications across both Android and iOS ecosystems.
-
-### From interface to production
-
-A production application requires more than UI implementation.
-
-The development process includes application logic, data handling, API communication, error handling, testing and deployment.
-
-### Explore the project
-
-GayeMandi is available through both Google Play and Apple's App Store, allowing visitors to see the real published product.
-`,
-  },
-
-  {
-    id: 'blog-5',
-    slug: 'masjidi-mobile-application-development',
-    title: 'Masjidi: Developing a Real-World Mobile Application',
-    excerpt:
-      'A look at our approach to designing and developing the Masjidi mobile application for a real-world digital experience.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Mobile Development Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/Masjidi.png?raw=true',
-    },
-    date: 'August 27, 2026',
-    readTime: '5 min read',
-    category: 'Mobile App Development',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/Masjidi.png?raw=true',
-    tags: [
-      'Masjidi',
-      'Mobile App',
-      'Android',
-      'UI/UX',
-      'Application Development',
-    ],
-    content: `
-Masjidi is one of the real mobile application projects in our portfolio.
-
-The project required a mobile-first experience designed around usability, clear navigation and reliable application behavior.
-
-### Building around the user
-
-Good mobile applications begin with understanding how users interact with the product.
-
-We focus on reducing unnecessary steps, keeping important information easy to access and creating interfaces that feel natural on mobile devices.
-
-### Production-focused development
-
-A production application needs to work beyond the development environment.
-
-Application architecture, API integration, data handling, performance and testing all contribute to the final experience.
-
-### Our development approach
-
-For every mobile project, we aim to balance visual quality with functionality.
-
-The result should not simply look good in screenshots. It should provide a dependable experience for real users.
-
-Explore Masjidi on Google Play to see the published application.
-`,
-  },
-
-  {
-    id: 'blog-6',
-    slug: 'yara-connect-mobile-app-development',
-    title: 'Yara Connect: Building a Modern Mobile Application',
-    excerpt:
-      'A project story about developing Yara Connect with a focus on mobile usability, application architecture and production readiness.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Mobile Development Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/yara.png?raw=true',
-    },
-    date: 'August 24, 2026',
-    readTime: '5 min read',
-    category: 'Mobile App Development',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/yara.png?raw=true',
-    tags: [
-      'Yara Connect',
-      'Mobile App',
-      'Android',
-      'Application Development',
-      'UI/UX',
-    ],
-    content: `
-Yara Connect is another production mobile application in our development portfolio.
-
-The project demonstrates our ability to take a digital product from application concept through interface development and production deployment.
-
-### A mobile-first experience
-
-Mobile applications need to communicate information quickly while keeping navigation simple.
-
-Our development approach focuses on clean interfaces, predictable interactions and a consistent user experience.
-
-### Application engineering
-
-Behind the interface, production applications require reliable application logic, API communication, data management and error handling.
-
-These technical foundations are what allow an application to move from a prototype into a product that users can actually rely on.
-
-### Explore Yara Connect
-
-The published Android application provides a direct way to experience the completed project.
-`,
-  },
-
-  {
-    id: 'blog-7',
-    slug: 'custom-software-development-for-modern-businesses',
-    title: 'Why Modern Businesses Choose Custom Software',
-    excerpt:
-      'How custom software can connect sales, inventory, customers, operations and reporting into one business ecosystem.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Product & Engineering Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    },
-    date: 'August 20, 2026',
-    readTime: '7 min read',
-    category: 'Custom Software',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    tags: [
-      'Custom Software',
-      'Business Automation',
-      'POS',
-      'APIs',
-      'Digital Transformation',
-    ],
-    content: `
-Many businesses begin by using separate tools for sales, inventory, customers, employees, communication and reporting.
-
-As the business grows, those disconnected systems can become difficult to manage.
-
-### The problem with disconnected tools
-
-When information is spread across multiple systems, teams may have to enter the same information repeatedly.
-
-This can create delays, inconsistencies and unnecessary manual work.
-
-### Building one connected ecosystem
-
-Custom software allows a business to design workflows around its actual operations.
-
-The MR Clothing Craft Retail Operating System is an example of this approach.
-
-Instead of relying only on a basic POS, the system brings together billing, inventory, customers, staff, cash management, reporting and e-commerce integration.
-
-### APIs make systems work together
-
-Modern business software often depends on APIs to connect different services.
-
-A well-designed API layer allows the application to communicate with e-commerce platforms, communication tools and other business services.
-
-### Custom software is about workflow
-
-The real value of custom software is not simply having more features.
-
-It is having the right features connected in the right workflow.
-
-That is the approach we take when building custom digital products for businesses.
-`,
-  },
-
-  {
-    id: 'blog-8',
-    slug: 'shopify-and-pos-integration',
-    title: 'Connecting Shopify With a Custom POS System',
-    excerpt:
-      'How we approached the challenge of connecting physical retail operations with an online Shopify store.',
-    author: {
-      name: 'Our Development Team',
-      role: 'E-commerce & Engineering Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    },
-    date: 'August 17, 2026',
-    readTime: '6 min read',
-    category: 'Shopify Development',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    tags: [
-      'Shopify',
-      'POS',
-      'API Integration',
-      'Inventory Sync',
-      'Retail',
-    ],
-    content: `
-Running a physical retail store and an online store creates an important technical challenge: keeping business data connected.
-
-A customer can purchase an item in-store while another customer may purchase the same product online.
-
-Without synchronization, inventory can quickly become inaccurate.
-
-### Our approach
-
-For MR Clothing Craft, we developed a custom POS system with Shopify integration.
-
-The goal is to connect physical retail operations with the online e-commerce environment.
-
-### Inventory synchronization
-
-Products, variants, sizes, colors and quantities are important parts of fashion retail.
-
-The integration is designed around keeping inventory information synchronized between the connected systems.
-
-### Orders and customers
-
-A connected ecosystem can also reduce the need to manage orders and customer information independently.
-
-This creates a more unified view of the business.
-
-### Why integration matters
-
-Shopify is powerful for e-commerce, while a custom POS can be designed around the unique requirements of a physical retail operation.
-
-Connecting the two allows a business to benefit from both.
-
-### Explore the project
-
-Our MR Clothing Craft POS project demonstrates how custom software and Shopify can work together as one retail technology ecosystem.
-`,
-  },
-
-  {
-    id: 'blog-9',
-    slug: 'building-offline-ready-retail-pos',
-    title: 'Building an Offline-Ready Retail POS System',
-    excerpt:
-      'Why retail applications need resilient workflows and how offline queues can help keep critical operations moving.',
-    author: {
-      name: 'Our Development Team',
-      role: 'Software Engineering Team',
-      avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    },
-    date: 'August 14, 2026',
-    readTime: '6 min read',
-    category: 'Software Engineering',
-    coverImage:
-      'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
-    tags: [
-      'Offline-First',
-      'POS',
       'Retail Software',
-      'Synchronization',
-      'Reliability',
+
+      'Custom Software',
+
+      'Inventory Management',
+
+      'Shopify Integration',
+
+      'Business Management'
+
     ],
-    content: `
-A retail checkout system cannot simply stop working whenever connectivity becomes unreliable.
 
-Sales happen at the physical counter, and critical operations need to remain responsive.
+    content: `A retail business needs more than a simple billing screen. As retail operations grow, businesses need a reliable system to manage products, inventory, customers, staff, expenses, sales and reporting in one place.
 
-### Why offline capability matters
 
-Retail environments can experience unstable internet connections, temporary network failures or interruptions between devices and cloud services.
 
-A resilient POS should be designed with these conditions in mind.
+For MR Clothing Craft, we built a custom Retail POS and business management system designed around real clothing-store operations.
 
-### Offline queues
 
-Our MR Clothing Craft Retail POS includes an offline queue approach that allows operations to be handled more reliably when connectivity is interrupted.
 
-Once connectivity is restored, queued operations can be synchronized with the connected backend.
+### The Challenge
 
-### Local state and synchronization
 
-Offline-ready applications require careful state management.
 
-The system needs to understand what has already been processed, what is waiting for synchronization and how to recover safely from interrupted operations.
+Managing a fashion retail business involves many connected processes. Products have different sizes and colors, inventory changes with every sale, customers need to be managed, and online and physical-store operations need to stay connected.
 
-### Designing for reliability
 
-Offline capability is not simply a feature that can be added at the end of development.
 
-It needs to be considered during architecture, data modeling and API design.
+The goal was to create one system that could bring these operations together.
 
-This is why we consider reliability and synchronization from the beginning when building business-critical applications.
-`,
+
+
+### The Solution
+
+
+
+We developed a custom retail platform with dedicated functionality for:
+
+
+
+- Point-of-sale billing
+
+- Product and inventory management
+
+- Size and color variations
+
+- Customer management
+
+- Staff and HR management
+
+- Cash management
+
+- Expense management
+
+- Sales and business reports
+
+- Shopify integration
+
+- WhatsApp-related customer communication
+
+- Role-based access
+
+- Activity and audit tracking
+
+
+
+### Built Around the Business
+
+
+
+Instead of adapting the business to a generic POS product, the system was designed around the actual workflow of the retail store.
+
+
+
+The result is a centralized platform where the business can manage day-to-day retail operations more efficiently while keeping important information organized in one system.`
+
   },
+
+
 
   {
-    id: 'blog-10',
-    slug: 'our-process-for-building-digital-products',
-    title: 'From Idea to Production: Our Digital Product Development Process',
+
+    id: 'blog-mr-clothing-craft-shopify',
+
+    slug: 'building-mr-clothing-craft-shopify-ecommerce-store',
+
+    title: 'Building a Modern Shopify E-commerce Store for MR Clothing Craft',
+
     excerpt:
-      'Our practical approach to transforming business ideas into production-ready websites, mobile apps and custom software.',
+
+      'A look at how we developed and structured a modern Shopify e-commerce experience for a men’s fashion retail brand.',
+
     author: {
-      name: 'Our Development Team',
-      role: 'Product & Engineering Team',
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
       avatar:
-        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
+
+        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true'
+
     },
-    date: 'August 10, 2026',
-    readTime: '7 min read',
-    category: 'Web Development',
+
+    date: 'September 6, 2026',
+
+    readTime: '5 min read',
+
+    category: 'E-commerce',
+
     coverImage:
+
       'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
+
     tags: [
+
+      'Shopify',
+
+      'E-commerce',
+
       'Web Development',
-      'Mobile Apps',
-      'Product Development',
-      'UI/UX',
-      'Custom Software',
+
+      'Fashion E-commerce',
+
+      'Online Store'
+
     ],
-    content: `
-A successful digital product starts long before the first line of code is written.
 
-Our development process is designed to move from business requirements to a reliable production product.
+    content: `Taking a physical fashion business online requires more than simply uploading products to an e-commerce platform.
 
-### 1. Understanding the requirement
 
-We begin by understanding the business problem, target users, required workflows and expected outcome.
 
-### 2. Planning the architecture
+For MR Clothing Craft, we developed a Shopify-based online store focused on creating a professional shopping experience for men's fashion customers.
 
-Before development, we define the application's structure, data requirements, APIs, integrations and technical approach.
 
-### 3. UI/UX design
 
-The interface should make complex functionality feel simple.
+### The Objective
 
-We focus on clear navigation, responsive layouts and user journeys that match the actual product requirements.
 
-### 4. Development
 
-The product is then developed using the appropriate technologies and architecture for the project.
+The store needed to present multiple product categories clearly while making it easy for customers to browse products, select sizes and place orders online.
 
-Depending on the requirement, this can include websites, mobile applications, APIs, databases, e-commerce integrations or custom business systems.
 
-### 5. Testing
 
-Real-world applications need to be tested across devices, screen sizes, workflows and error conditions.
+### Building the Store
 
-### 6. Deployment
 
-After testing, the application is prepared for production deployment.
 
-### 7. Continuous improvement
+The e-commerce experience was structured around core men's fashion categories such as:
 
-Production is not the end of the process.
 
-Digital products can continue to improve through new features, optimization, integrations and feedback from real users.
 
-Our portfolio includes mobile applications, Shopify e-commerce, service booking platforms, dashboards and custom retail software built using this practical approach.
-`,
+- Jeans
+
+- Shirts
+
+- Trousers
+
+- Polos
+
+- Pants
+
+- Accessories
+
+- Other fashion products
+
+
+
+Product variations, collections, pricing and promotional offers were organized to make the shopping process easier for customers.
+
+
+
+### Connecting Retail and E-commerce
+
+
+
+The Shopify store also became an important part of the wider MR Clothing Craft digital ecosystem, alongside the company's physical retail operations and custom POS system.
+
+
+
+This project shows how an established retail business can extend its customer experience from a physical store into a professional online shopping platform.`
+
   },
+
+
+
+  {
+
+    id: 'blog-fixtman-mobile-app',
+
+    slug: 'building-fixtman-mobile-application',
+
+    title: 'Building FixTman: A Mobile Application for Real-World Service Operations',
+
+    excerpt:
+
+      'A look at the development of FixTman, a real mobile application designed around service-focused customer experiences.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true'
+
+    },
+
+    date: 'September 3, 2026',
+
+    readTime: '5 min read',
+
+    category: 'Mobile App Development',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true',
+
+    tags: [
+
+      'Mobile Apps',
+
+      'Android',
+
+      'iOS',
+
+      'Service Applications',
+
+      'App Development'
+
+    ],
+
+    content: `Digital service businesses need applications that make it easy for customers to discover services and move through the required process without unnecessary complexity.
+
+
+
+FixTman is a real mobile application project developed around professional service requirements.
+
+
+
+### The Focus
+
+
+
+The application was developed with a focus on:
+
+
+
+- Clear mobile navigation
+
+- Service-focused user journeys
+
+- Easy access to relevant information
+
+- Practical user interaction
+
+- A modern mobile interface
+
+
+
+### Beyond the Interface
+
+
+
+A successful service application is not only about visual design. The application needs structured user flows and reliable functionality that supports the actual business process.
+
+
+
+Our work on FixTman focused on combining the user experience with the functional requirements of a real service platform.
+
+
+
+### The Result
+
+
+
+FixTman represents our approach to building production-oriented mobile applications where design and functionality work together to create a practical experience for users.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-fixtman-booking-web',
+
+    slug: 'building-fixtman-service-booking-platform',
+
+    title: 'Building a Service Booking Experience for FixTman',
+
+    excerpt:
+
+      'How a digital booking experience can simplify the process of selecting and requesting professional services online.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true'
+
+    },
+
+    date: 'August 30, 2026',
+
+    readTime: '4 min read',
+
+    category: 'Web Applications',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true',
+
+    tags: [
+
+      'Web Applications',
+
+      'Service Booking',
+
+      'FixTman',
+
+      'Booking Platform',
+
+      'Custom Web Development'
+
+    ],
+
+    content: `When customers need a professional service, the booking process should be simple, clear and easy to understand.
+
+
+
+As part of the FixTman ecosystem, we worked on a digital service booking experience that allows customers to move from service selection toward booking online.
+
+
+
+### Designing the Booking Journey
+
+
+
+A service booking experience needs to guide the customer through the required information without making the process confusing.
+
+
+
+The booking flow is designed around the customer's requirements and the service they need.
+
+
+
+### Why Custom Booking Experiences Matter
+
+
+
+Different service businesses have different requirements. A custom booking solution gives businesses more control over how services are presented and how customers move through the booking process.
+
+
+
+FixTman is an example of using web technology to make a traditional service operation more accessible through a digital experience.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-gayemandi-mobile-app',
+
+    slug: 'developing-gayemandi-mobile-application',
+
+    title: 'GayeMandi: Developing a Production Mobile Application',
+
+    excerpt:
+
+      'A look at the development of GayeMandi, a real mobile application built with a focus on usability, structured navigation and practical functionality.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/GayeMandi.png?raw=true'
+
+    },
+
+    date: 'August 27, 2026',
+
+    readTime: '5 min read',
+
+    category: 'Mobile App Development',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/GayeMandi.png?raw=true',
+
+    tags: [
+
+      'GayeMandi',
+
+      'Mobile Apps',
+
+      'Android',
+
+      'iOS',
+
+      'App Development',
+
+      'UI/UX'
+
+    ],
+
+    content: `GayeMandi is one of the real mobile application projects in our portfolio.
+
+
+
+The project required a modern mobile experience built around structured navigation and practical functionality.
+
+
+
+### Our Development Approach
+
+
+
+We focused on building an application experience that is:
+
+
+
+- Easy to navigate
+
+- Clean and modern
+
+- Structured around clear user flows
+
+- Suitable for real users
+
+- Designed for continued development
+
+
+
+### Building for Real Use
+
+
+
+Developing a real application requires more than creating individual screens. The complete experience needs to work together, from navigation and interactions to the overall application structure.
+
+
+
+GayeMandi demonstrates our approach to creating mobile applications that are built around actual product requirements rather than simple design concepts.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-masjidi-mobile-app',
+
+    slug: 'developing-masjidi-mobile-application',
+
+    title: 'Masjidi: Building a Practical Mobile Application',
+
+    excerpt:
+
+      'How we approached the development of Masjidi as a real mobile application with a focus on usability and a structured digital experience.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/Masjidi.png?raw=true'
+
+    },
+
+    date: 'August 24, 2026',
+
+    readTime: '4 min read',
+
+    category: 'Mobile App Development',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/Masjidi.png?raw=true',
+
+    tags: [
+
+      'Masjidi',
+
+      'Mobile Application',
+
+      'Android',
+
+      'App Development',
+
+      'Mobile UX'
+
+    ],
+
+    content: `Masjidi is a real mobile application project focused on delivering a practical digital experience through mobile technology.
+
+
+
+### Creating a Simple User Experience
+
+
+
+For mobile applications, clarity is important. Users should be able to understand the application and navigate between important sections without unnecessary complexity.
+
+
+
+Our development approach focused on creating a structured experience with clear navigation and practical interactions.
+
+
+
+### From Concept to Application
+
+
+
+Building a mobile application involves bringing together design, functionality and technical implementation.
+
+
+
+Masjidi represents our work in transforming a digital product idea into a real mobile application designed around the needs of its users.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-yara-connect-mobile-app',
+
+    slug: 'building-yara-connect-mobile-application',
+
+    title: 'Yara Connect: Building a Modern Mobile Application',
+
+    excerpt:
+
+      'A look at our work on Yara Connect and the development of a modern mobile application focused on a clear and user-friendly experience.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/yara.png?raw=true'
+
+    },
+
+    date: 'August 21, 2026',
+
+    readTime: '4 min read',
+
+    category: 'Mobile App Development',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/yara.png?raw=true',
+
+    tags: [
+
+      'Yara Connect',
+
+      'Mobile Apps',
+
+      'Android',
+
+      'App Development',
+
+      'Mobile UX'
+
+    ],
+
+    content: `Yara Connect is another real mobile application project from our portfolio.
+
+
+
+The project was developed with a focus on creating a modern and accessible mobile experience.
+
+
+
+### Focused on the User
+
+
+
+A good mobile application should make its primary functions easy to understand and use.
+
+
+
+During development, we focused on:
+
+
+
+- Structured application navigation
+
+- Clean interface design
+
+- Practical user flows
+
+- Consistent mobile experience
+
+- A scalable application structure
+
+
+
+### Building Real Digital Products
+
+
+
+Yara Connect reflects our approach to mobile development: understand the product requirements, design around the user and build the technology required to turn the concept into a functional application.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-mobile-app-development',
+
+    slug: 'our-approach-to-mobile-app-development',
+
+    title: 'Our Approach to Building Real Mobile Applications',
+
+    excerpt:
+
+      'What we learned from building real applications such as FixTman, GayeMandi, Masjidi and Yara Connect.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true'
+
+    },
+
+    date: 'August 18, 2026',
+
+    readTime: '5 min read',
+
+    category: 'Mobile App Development',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/FixTman.png?raw=true',
+
+    tags: [
+
+      'Mobile App Development',
+
+      'iOS',
+
+      'Android',
+
+      'Custom Applications',
+
+      'Product Development'
+
+    ],
+
+    content: `Our mobile development portfolio includes real applications such as FixTman, GayeMandi, Masjidi and Yara Connect.
+
+
+
+Although each project has different requirements, the development process starts with the same principle: understand what the product actually needs to achieve.
+
+
+
+### Product Before Code
+
+
+
+Before development, the application needs a clear structure. The user journey, screens, functionality and overall flow need to make sense together.
+
+
+
+### Building for Real Users
+
+
+
+Real applications need to be practical, maintainable and ready for continuous improvement.
+
+
+
+Our experience across different mobile projects has helped us develop an approach that balances user experience, functionality and technical development.
+
+
+
+### From Idea to Application
+
+
+
+Whether it is a service platform, a customer application or another digital product, our goal is to turn the business idea into a usable mobile experience.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-custom-software-retail',
+
+    slug: 'why-businesses-choose-custom-software',
+
+    title: 'Why Businesses Choose Custom Software for Their Operations',
+
+    excerpt:
+
+      'Our experience building the MR Clothing Craft Retail POS shows how custom software can be designed around the real workflow of a business.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true'
+
+    },
+
+    date: 'August 15, 2026',
+
+    readTime: '5 min read',
+
+    category: 'Custom Software',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
+
+    tags: [
+
+      'Custom Software',
+
+      'Business Software',
+
+      'Retail Technology',
+
+      'POS',
+
+      'Digital Transformation'
+
+    ],
+
+    content: `Every business has a different workflow.
+
+
+
+Off-the-shelf software can provide useful features, but it may not always match the exact way a business operates.
+
+
+
+### Building Around the Business
+
+
+
+The MR Clothing Craft Retail POS project is a good example.
+
+
+
+Instead of creating a generic system, the software was designed around the requirements of a real fashion retail business.
+
+
+
+This includes products with different sizes and colors, inventory management, sales, customers, staff, expenses, reporting and Shopify-related operations.
+
+
+
+### The Value of Custom Development
+
+
+
+Custom software gives a business the ability to create workflows that match its own requirements.
+
+
+
+As businesses grow, technology should grow with them. A properly designed custom platform can become the foundation for managing more parts of the business from a single system.`
+
+  },
+
+
+
+  {
+
+    id: 'blog-complete-digital-products',
+
+    slug: 'from-mobile-apps-to-business-software',
+
+    title: 'From Mobile Apps to Business Software: Building Real Digital Products',
+
+    excerpt:
+
+      'From mobile applications to Shopify e-commerce and custom POS software, our portfolio covers different types of real-world digital products.',
+
+    author: {
+
+      name: 'Our Team',
+
+      role: 'Software Development Team',
+
+      avatar:
+
+        'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true'
+
+    },
+
+    date: 'August 12, 2026',
+
+    readTime: '5 min read',
+
+    category: 'Software Development',
+
+    coverImage:
+
+      'https://github.com/mrclothingcraft/img/blob/main/mrclothingcraft.png?raw=true',
+
+    tags: [
+
+      'Software Development',
+
+      'Mobile Apps',
+
+      'Web Development',
+
+      'Shopify',
+
+      'POS Systems',
+
+      'Custom Software'
+
+    ],
+
+    content: `Our portfolio includes different types of digital products, from mobile applications and service platforms to e-commerce websites and custom business software.
+
+
+
+Projects such as FixTman, GayeMandi, Masjidi and Yara Connect represent our mobile development work, while MR Clothing Craft demonstrates our experience with Shopify e-commerce and custom retail software.
+
+
+
+### Different Projects, Different Requirements
+
+
+
+Every digital product has its own goals.
+
+
+
+A mobile application requires a different approach from an e-commerce store. A service booking platform has different requirements from a retail POS system.
+
+
+
+Our development process starts by understanding those requirements and then building the technology around them.
+
+
+
+### One Development Mindset
+
+
+
+Regardless of the project type, our focus remains the same:
+
+
+
+Build useful digital products, create clear user experiences and develop software that is designed around real-world requirements.`
+
+  }
+
 ];
+
 export const initialTeam: TeamMemberItem[] = [
   {
     id: 'team-1',

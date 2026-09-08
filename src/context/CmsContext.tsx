@@ -6,17 +6,47 @@ import {
   BlogPostItem, 
   TeamMemberItem, 
   LeadInquiry,
-  ServiceCategory 
+  ServiceCategory,
+  SiteConfig,
+  HeroData,
+  AboutPageData,
+  ContactPageData,
+  FooterData
 } from '../types';
 import { 
   initialServices, 
   initialProjects, 
   initialTestimonials, 
   initialBlogPosts, 
-  initialTeam 
+  initialTeam,
+  siteConfig as defaultSiteConfig,
+  heroData as defaultHeroData,
+  homePageData as defaultHomePageData,
+  aboutPageData as defaultAboutPageData,
+  contactPageData as defaultContactPageData,
+  pricingPageData as defaultPricingPageData,
+  footerData as defaultFooterData,
+  navigationData as defaultNavigationData,
+  openingExperienceData as defaultOpeningExperienceData,
+  agencyStats as defaultAgencyStats,
+  clientLogos as defaultClientLogos
 } from '../data/initialData';
 
 interface CmsContextType {
+  // Centralized Content Sources
+  siteConfig: SiteConfig;
+  heroData: HeroData;
+  homePageData: typeof defaultHomePageData;
+  aboutPageData: AboutPageData;
+  contactPageData: ContactPageData;
+  pricingPageData: typeof defaultPricingPageData;
+  footerData: FooterData;
+  navigationData: typeof defaultNavigationData;
+  openingExperienceData: typeof defaultOpeningExperienceData;
+  agencyStats: typeof defaultAgencyStats;
+  clientLogos: typeof defaultClientLogos;
+
+  // Dynamic Collections
   services: ServiceItem[];
   projects: ProjectItem[];
   testimonials: TestimonialItem[];
@@ -59,7 +89,7 @@ interface CmsContextType {
 
 const CmsContext = createContext<CmsContextType | undefined>(undefined);
 
-const STORAGE_KEY_PREFIX = 'aether_cms_v6_';
+const STORAGE_KEY_PREFIX = 'aether_cms_v8_';
 
 const REMOVED_PROJECT_IDENTIFIERS = new Set([
   'proj-1',
@@ -70,6 +100,28 @@ const REMOVED_PROJECT_IDENTIFIERS = new Set([
   'proj-6',
   'proj-7',
   'proj-8',
+  'blog-1',
+  'blog-2',
+  'blog-3',
+  'blog-4',
+  'blog-5',
+  'future-of-interactive-webgl-performance',
+  'scaling-shopify-plus-to-8-figures',
+  'ai-driven-paid-acquisition-playbook',
+  'architecting-offline-first-mobile-apps',
+  'architecting-29-screen-retail-operating-system',
+  'blog-mr-pos-retail-os',
+  'blog-lumina-luxury-headless-shopify',
+  'blog-apex-fitness-mobile-app',
+  'blog-veloce-fintech-web-app',
+  'blog-chrono-warehouse-custom-software',
+  'blog-artisan-cafe-smart-pos',
+  'mr-clothing-craft-pos-system-case-study',
+  'lumina-luxury-headless-shopify-case-study',
+  'apex-fitness-native-mobile-app-architecture',
+  'veloce-fintech-web-application-case-study',
+  'chrono-logistics-warehouse-software-case-study',
+  'artisan-cafe-smart-pos-kiosk-engineering',
   'chronos-luxury-watches',
   'synapse-ai-platform',
   'lumina-brand-identity',
@@ -83,9 +135,9 @@ const REMOVED_PROJECT_IDENTIFIERS = new Set([
 // Helper to load and merge defaults and preserve newly introduced fields
 function loadAndMerge<T extends { id: string; slug?: string }>(key: string, defaults: T[]): T[] {
   try {
-    // Clear out any old legacy caches that might contain removed placeholders or outdated images
-    if (key === 'projects' || key === 'testimonials') {
-      ['aether_cms_v1_', 'aether_cms_v2_', 'aether_cms_v3_', 'aether_cms_v4_', 'aether_cms_v5_'].forEach(prefix => {
+    // Clear out any old legacy caches that might contain removed placeholders
+    if (key === 'projects' || key === 'testimonials' || key === 'blogPosts') {
+      ['aether_cms_v1_', 'aether_cms_v2_', 'aether_cms_v3_', 'aether_cms_v4_', 'aether_cms_v5_', 'aether_cms_v6_', 'aether_cms_v7_'].forEach(prefix => {
         try {
           localStorage.removeItem(`${prefix}${key}`);
         } catch (_) {}
@@ -95,7 +147,7 @@ function loadAndMerge<T extends { id: string; slug?: string }>(key: string, defa
     const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}${key}`);
     if (saved) {
       const parsed: T[] = JSON.parse(saved);
-      // Filter out any removed project identifiers
+      // Filter out any removed identifiers
       const sanitizedParsed = parsed.filter(
         (p) => !REMOVED_PROJECT_IDENTIFIERS.has(p.id) && (!p.slug || !REMOVED_PROJECT_IDENTIFIERS.has(p.slug))
       );
@@ -320,6 +372,17 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   return (
     <CmsContext.Provider
       value={{
+        siteConfig: defaultSiteConfig,
+        heroData: defaultHeroData,
+        homePageData: defaultHomePageData,
+        aboutPageData: defaultAboutPageData,
+        contactPageData: defaultContactPageData,
+        pricingPageData: defaultPricingPageData,
+        footerData: defaultFooterData,
+        navigationData: defaultNavigationData,
+        openingExperienceData: defaultOpeningExperienceData,
+        agencyStats: defaultAgencyStats,
+        clientLogos: defaultClientLogos,
         services,
         projects,
         testimonials,

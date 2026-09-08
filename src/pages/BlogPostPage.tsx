@@ -69,6 +69,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, onNavigate }) 
             <img
               src={post.author.avatar}
               alt={post.author.name}
+              referrerPolicy="no-referrer"
               className="h-9 w-9 rounded-full object-cover border border-[#1E2945]"
             />
             <div>
@@ -92,6 +93,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, onNavigate }) 
         <img
           src={post.coverImage}
           alt={post.title}
+          referrerPolicy="no-referrer"
           className="h-full w-full object-cover"
         />
       </div>
@@ -120,6 +122,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, onNavigate }) 
         <img
           src={post.author.avatar}
           alt={post.author.name}
+          referrerPolicy="no-referrer"
           className="h-12 w-12 rounded-full object-cover border border-[#1E2945] shrink-0"
         />
         <div className="space-y-1">

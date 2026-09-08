@@ -12,7 +12,13 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const { setCursor, resetCursor } = useCursor();
-  const { services } = useCms();
+  const { services, footerData, siteConfig } = useCms();
+
+  const brandName = siteConfig?.name || 'AETHER STUDIO';
+  const tagline = footerData?.tagline || siteConfig?.description || 'We design and engineer bespoke digital experiences, high-performance web applications, and interactive 3D environments for forward-thinking brands.';
+  const email = footerData?.contactEmail || siteConfig?.contactEmail || 'partners@aetherstudio.agency';
+  const location = footerData?.location || 'San Francisco, California';
+  const copyright = footerData?.copyright || `© ${new Date().getFullYear()} ${brandName} LLC. All rights reserved.`;
 
   return (
     <footer id="site-footer" className="bg-[#0A0E1A] border-t border-[#1E2945]/60 relative overflow-hidden pt-16 pb-12">
@@ -28,19 +34,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <span className="text-sm font-extrabold text-[#3E7BFA]">Æ</span>
               </div>
               <span className="font-extrabold text-base tracking-wider text-[#F3F5FA]">
-                AETHER STUDIO
+                {brandName}
               </span>
             </div>
 
             <p className="text-xs text-[#9AA3C2] leading-relaxed max-w-sm">
-              We design and engineer bespoke digital experiences, high-performance web applications, and interactive 3D environments for forward-thinking brands.
+              {tagline}
             </p>
 
             <div className="pt-2 text-xs text-[#9AA3C2] space-y-1">
-              <div>San Francisco, California</div>
+              <div>{location}</div>
               <div>
-                <a href="mailto:partners@aetherstudio.agency" className="text-[#3E7BFA] hover:underline">
-                  partners@aetherstudio.agency
+                <a href={`mailto:${email}`} className="text-[#3E7BFA] hover:underline">
+                  {email}
                 </a>
               </div>
             </div>
@@ -176,7 +182,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Minimal Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9AA3C2]">
           <div>
-            © {new Date().getFullYear()} Aether Digital Studio LLC. All rights reserved.
+            {copyright}
           </div>
           <div className="flex items-center gap-6">
             <button onClick={() => onNavigate('sitemap')} className="hover:text-[#F3F5FA] transition-colors">

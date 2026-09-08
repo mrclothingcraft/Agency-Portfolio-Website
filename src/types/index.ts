@@ -5,7 +5,10 @@ export type ServiceCategory =
   | 'Digital Marketing' 
   | 'Shopify Development'
   | 'Mobile App Development'
-  | 'E-commerce Complete Solution';
+  | 'E-commerce Complete Solution'
+  | 'POS Systems'
+  | 'Custom Software'
+  | 'Strategy';
 
 export type PortfolioCategory =
   | 'Mobile Apps'
@@ -13,7 +16,9 @@ export type PortfolioCategory =
   | 'E-commerce'
   | 'Booking Platforms'
   | 'Web Applications'
-  | 'Business Management Systems';
+  | 'Business Management Systems'
+  | 'POS Systems'
+  | 'Custom Software';
 
 export interface ServiceItem {
   id: string;
@@ -94,7 +99,7 @@ export interface BlogPostItem {
   };
   date: string;
   readTime: string;
-  category: ServiceCategory | 'Strategy';
+  category: ServiceCategory | 'Strategy' | string;
   coverImage: string;
   tags: string[];
 }
@@ -126,6 +131,112 @@ export interface LeadInquiry {
   message: string;
   createdAt: string;
   status: 'New' | 'In Review' | 'Contacted';
+}
+
+export interface SiteConfig {
+  name: string;
+  shortName: string;
+  tagline: string;
+  description: string;
+  foundedYear: string;
+  contact: {
+    email: string;
+    phone: string;
+    address: string;
+    cityState: string;
+    whatsappNumber: string;
+    whatsappUrl: string;
+    googleMapsEmbedUrl: string;
+    workingHours: string;
+    formSubmitEmail: string;
+  };
+  socials: {
+    name: string;
+    url: string;
+    icon: string;
+  }[];
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
+}
+
+export interface HeroData {
+  badge: string;
+  headingPrefix: string;
+  headingHighlight: string;
+  headingSuffix: string;
+  subheading: string;
+  primaryCta: { label: string; route: PageRoute };
+  secondaryCta: { label: string; route: PageRoute };
+  trustBadges: { value: string; label: string }[];
+  clientLogos: string[];
+}
+
+export interface ProcessStep {
+  step: string;
+  title: string;
+  desc: string;
+  iconName?: string;
+}
+
+export interface FAQItem {
+  q: string;
+  a: string;
+}
+
+export interface AboutValue {
+  title: string;
+  desc: string;
+  iconName: string;
+}
+
+export interface AboutPageData {
+  badge: string;
+  heading: string;
+  description: string;
+  storyP1: string;
+  storyP2: string;
+  stats: { value: string; label: string }[];
+  values: AboutValue[];
+}
+
+export interface ContactPageData {
+  badge: string;
+  heading: string;
+  subheading: string;
+  offices: {
+    name: string;
+    address: string;
+    phone: string;
+    email: string;
+  }[];
+  servicesList: string[];
+  budgetRanges: string[];
+  timelineOptions: string[];
+}
+
+export interface PricingPlan {
+  id: string;
+  name: string;
+  description: string;
+  priceMonthly: string;
+  priceAnnual: string;
+  period: string;
+  popular?: boolean;
+  highlight?: string;
+  features: string[];
+  ctaLabel: string;
+  ctaRoute: PageRoute;
+}
+
+export interface FooterData {
+  tagline: string;
+  description: string;
+  newsletterHeading: string;
+  newsletterSubtext: string;
+  copyright: string;
 }
 
 export type CursorVariant = 'default' | 'button' | 'link' | 'project' | 'drag' | 'hidden';

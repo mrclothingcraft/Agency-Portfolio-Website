@@ -22,19 +22,27 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const { services, getFeaturedProjects, testimonials } = useCms();
+  const { 
+    services, 
+    getFeaturedProjects, 
+    testimonials, 
+    heroData, 
+    homePageData, 
+    agencyStats, 
+    clientLogos: cmsClientLogos 
+  } = useCms();
   const { setCursor, resetCursor } = useCursor();
   const featuredProjects = getFeaturedProjects().slice(0, 4);
   const featuredTestimonials = testimonials.slice(0, 3);
 
-  const trustBadges = [
+  const trustBadges = heroData?.trustBadges || agencyStats || [
     { value: '10+', label: 'Years Active' },
     { value: '50+', label: 'Projects Completed' },
     { value: '120+', label: 'Clients Worldwide' },
     { value: '99%', label: 'Client Retention' }
   ];
 
-  const clientLogos = [
+  const clientLogos = heroData?.clientLogos || cmsClientLogos || [
     'CHRONOS SWISS',
     'SYNAPSE AI',
     'LUMINA STUDIO',
@@ -43,7 +51,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     'VELOX GLOBAL'
   ];
 
-  const processSteps = [
+  const iconMap: Record<string, React.ElementType> = {
+    Compass,
+    PenTool,
+    Code2,
+    Rocket
+  };
+
+  const processSteps = homePageData?.processSteps?.map((step) => ({
+    step: step.step,
+    title: step.title,
+    desc: step.desc,
+    icon: iconMap[step.iconName] || Compass
+  })) || [
     {
       step: '01',
       title: 'Discovery & Strategy',
@@ -86,15 +106,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <div className="lg:col-span-7 space-y-8 z-10 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#101626] border border-[#1E2945] text-xs font-medium text-[#3E7BFA]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#17B4E0]" />
-              <span>Digital Design & Engineering Studio</span>
+              <span>{heroData?.badgeText || 'Digital Design & Engineering Studio'}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F3F5FA] leading-[1.12]">
-              Architecting Digital Experiences That Command <span className="bg-gradient-to-r from-[#3E7BFA] via-[#17B4E0] to-[#7B4CF0] bg-clip-text text-transparent">Prestige</span> & Scale.
+              {heroData?.headline || 'Architecting Digital Experiences That Command'}{' '}
+              <span className="bg-gradient-to-r from-[#3E7BFA] via-[#17B4E0] to-[#7B4CF0] bg-clip-text text-transparent">
+                {heroData?.headlineHighlight || 'Prestige'}
+              </span>{' '}
+              & Scale.
             </h1>
 
             <p className="text-base sm:text-lg text-[#9AA3C2] leading-relaxed max-w-xl mx-auto lg:mx-0">
-              We merge interactive 3D WebGL, high-velocity engineering, and brand strategy to transform ambitious brands into category leaders.
+              {heroData?.subheadline || 'We merge interactive 3D WebGL, high-velocity engineering, and brand strategy to transform ambitious brands into category leaders.'}
             </p>
 
             {/* Clean CTAs */}

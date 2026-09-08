@@ -565,38 +565,36 @@ export const IntroRobotCanvas: React.FC<IntroRobotCanvasProps> = ({ progress, ph
       const currentPhase = phaseRef.current;
 
       // Smooth mouse interpolation
-      mouse.x += (mouse.targetX - mouse.x) * 0.06;
-      mouse.y += (mouse.targetY - mouse.y) * 0.06;
+      mouse.x += (mouse.targetX - mouse.x) * 0.04;
+      mouse.y += (mouse.targetY - mouse.y) * 0.04;
 
-      // Idle sine wave levitation
-      const hoverY = Math.sin(elapsedTime * 2.2) * 0.08;
-      robotRoot.position.y = -0.2 + hoverY;
+      // Gentle, majestic levitation
+      const hoverY = Math.sin(elapsedTime * 1.6) * 0.04;
+      robotRoot.position.y = -0.15 + hoverY;
 
-      // Robot Head tracks cursor with natural spring
-      headGroup.rotation.y = mouse.x * 0.45;
-      headGroup.rotation.x = -mouse.y * 0.25;
+      // Robot Head tracks cursor with natural soft damping
+      headGroup.rotation.y = mouse.x * 0.35;
+      headGroup.rotation.x = -mouse.y * 0.18;
 
-      // Torso slight parallax counter-tilt
-      torsoGroup.rotation.y = mouse.x * 0.15;
-      torsoGroup.rotation.z = -mouse.x * 0.04;
+      // Torso slight counter-tilt
+      torsoGroup.rotation.y = mouse.x * 0.1;
+      torsoGroup.rotation.z = -mouse.x * 0.02;
 
-      // Subtle breathing arm movement
-      leftArmGroup.rotation.x = Math.sin(elapsedTime * 2.2) * 0.06;
-      rightArmGroup.rotation.x = Math.sin(elapsedTime * 2.2 + 0.3) * 0.06;
+      // Breathing arm movement
+      leftArmGroup.rotation.x = Math.sin(elapsedTime * 1.6) * 0.03;
+      rightArmGroup.rotation.x = Math.sin(elapsedTime * 1.6 + 0.4) * 0.03;
 
-      // Pulse Arc Reactor Core based on loading progress
-      const pulseRate = 4 + (currentProg / 100) * 8;
-      const coreScale = 1 + Math.sin(elapsedTime * pulseRate) * 0.08;
+      // Steady, elegant Arc Reactor glow
+      const coreScale = 1 + Math.sin(elapsedTime * 2.2) * 0.03;
       coreGroup.scale.set(coreScale, coreScale, coreScale);
-      coreLight.intensity = 2.0 + (currentProg / 100) * 2.5 + Math.sin(elapsedTime * pulseRate) * 0.8;
+      coreLight.intensity = 2.4 + Math.sin(elapsedTime * 2.2) * 0.4;
 
-      // Visor eye scanning beam
-      const scanX = Math.sin(elapsedTime * 3.5) * 0.08;
-      eyesGroup.position.x = scanX;
+      // Calm visor glow without erratic shaking
+      eyesGroup.position.x = Math.sin(elapsedTime * 1.2) * 0.02;
 
       // Rotating concentric pedestal rings
-      outerRing.rotation.z = elapsedTime * 0.35;
-      midRing.rotation.z = -elapsedTime * 0.55;
+      outerRing.rotation.z = elapsedTime * 0.18;
+      midRing.rotation.z = -elapsedTime * 0.25;
 
       // Rotate particle cloud gently
       particleCloud.rotation.y = elapsedTime * 0.05;
